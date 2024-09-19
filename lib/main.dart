@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+import 'basicformbuilder.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'App Comity',
+      theme: ThemeData(
+        primarySwatch: Colors.lightGreen,
+      ),
+      home: const MyHomePage(title: 'Basic FormBuilder Example'),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
+          child: Center(
+            child: SizedBox(
+              width: 500,
+              child: Column(
+                children: [
+                  Text(
+                    'Welcome to App Comity!',
+                  ),
+                  CompleteForm(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
