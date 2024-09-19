@@ -182,8 +182,8 @@ FormBuilderChoiceChip createFormBuilderChoiceChipMap(
     Map<String, String> mapOptions) {
   return FormBuilderChoiceChip<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
-    decoration: const InputDecoration(labelText: 'ChoiceChip:'),
-    name: 'choice_chip',
+    decoration: const InputDecoration(labelText: 'ChoiceChip Map:'),
+    name: 'choice_chip_map',
     options: mapOptions.entries
         .map((entry) => FormBuilderChipOption(
               value: entry.key,
@@ -223,8 +223,8 @@ FormBuilderFilterChip createFormBuilderFilterChipMap(
     Map<String, String> mapOptions) {
   return FormBuilderFilterChip<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
-    decoration: const InputDecoration(labelText: 'FilterChip'),
-    name: 'filter_chip',
+    decoration: const InputDecoration(labelText: 'FilterChip Map'),
+    name: 'filter_chip_map',
     selectedColor: Colors.red,
     options: mapOptions.entries
         .map((entry) => FormBuilderChipOption(
@@ -266,8 +266,8 @@ FormBuilderCheckboxGroup createFormBuilderCheckboxGroupList(
     List<String> listOptions) {
   return FormBuilderCheckboxGroup<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
-    decoration: const InputDecoration(labelText: 'CheckboxGroup'),
-    name: 'checkbox_group',
+    decoration: const InputDecoration(labelText: 'CheckboxGroup List'),
+    name: 'checkbox_group_list',
     options: listOptions
         .map((lo) => FormBuilderFieldOption(
               value: lo,
@@ -305,9 +305,9 @@ FormBuilderRadioGroup createFormBuilderRadioGroupList(
     List<String> listOptions) {
   return FormBuilderRadioGroup<String>(
     decoration: const InputDecoration(
-      labelText: 'RadioGroup',
+      labelText: 'RadioGroup List',
     ),
-    name: 'radio_group',
+    name: 'radio_group_list',
     options: listOptions
         .map((lo) => FormBuilderFieldOption(
               value: lo,
@@ -336,9 +336,9 @@ FormBuilderRadioGroup createFormBuilderRadioGroup() {
 
 FormBuilderDropdown createFormBuilderDropdownList(List<String> listOptions) {
   return FormBuilderDropdown<String>(
-    name: 'dropdown',
+    name: 'dropdown_list',
     decoration: const InputDecoration(
-      labelText: 'Dropdown',
+      labelText: 'Dropdown List',
       hintText: 'Select Dropdown',
     ),
     items: listOptions
@@ -361,18 +361,22 @@ FormBuilderDropdown createFormBuilderDropdown() {
     ),
     items: const [
       DropdownMenuItem(
+        alignment: AlignmentDirectional.center,
         value: 'list5',
         child: Text('List 5'),
       ),
       DropdownMenuItem(
+        alignment: AlignmentDirectional.center,
         value: 'list6',
         child: Text('List 6'),
       ),
       DropdownMenuItem(
+        alignment: AlignmentDirectional.center,
         value: 'list7',
         child: Text('List 7'),
       ),
       DropdownMenuItem(
+        alignment: AlignmentDirectional.center,
         value: 'list8',
         child: Text('List 8'),
       ),
