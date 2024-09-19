@@ -12,7 +12,6 @@ class CompleteForm extends StatefulWidget {
 }
 
 class _CompleteFormState extends State<CompleteForm> {
-
   List<String> listOptions = [
     'list 1',
     'list 2',
@@ -41,25 +40,35 @@ class _CompleteFormState extends State<CompleteForm> {
                 const SizedBox(height: 8),
                 createFormBuilderRangeSlider(),
                 const SizedBox(height: 8),
-                createFormBuilderCheckBox(),
-                const SizedBox(height: 8),
-                createFormBuilderTextField(),
-                const SizedBox(height: 8),
-                createFormBuilderSwitch(),
-                const SizedBox(height: 8),
-                createFormBuilderFilterChip(mapOptions),
-                const SizedBox(height: 8),
-                createFormBuilderCheckboxGroup(listOptions),
-                const SizedBox(height: 8),
-                createFormBuilderRadioGroup(listOptions),
-                const SizedBox(height: 8),
-                createFormBuilderChoiceChip(mapOptions),
-                const SizedBox(height: 8),
-                createFormBuilderDropdown(listOptions),
-                const SizedBox(height: 8),
                 createFormBuilderDateTimePicker(),
                 const SizedBox(height: 8),
                 createFormBuilderDateRangePicker(),
+                const SizedBox(height: 8),
+                createFormBuilderCheckBox(),
+                const SizedBox(height: 8),
+                createFormBuilderSwitch(),
+                const SizedBox(height: 8),
+                createFormBuilderTextField(),
+                const SizedBox(height: 8),
+                createFormBuilderFilterChipMap(mapOptions),
+                const SizedBox(height: 8),
+                createFormBuilderFilterChip(),
+                const SizedBox(height: 8),
+                createFormBuilderChoiceChipMap(mapOptions),
+                const SizedBox(height: 8),
+                createFormBuilderChoiceChip(),
+                const SizedBox(height: 8),
+                createFormBuilderCheckboxGroupList(listOptions),
+                const SizedBox(height: 8),
+                createFormBuilderCheckboxGroup(),
+                const SizedBox(height: 8),
+                createFormBuilderRadioGroupList(listOptions),
+                const SizedBox(height: 8),
+                createFormBuilderRadioGroup(),
+                const SizedBox(height: 8),
+                createFormBuilderDropdownList(listOptions),
+                const SizedBox(height: 8),
+                createFormBuilderDropdown(),
                 const SizedBox(height: 8),
               ],
             ),
@@ -169,12 +178,11 @@ FormBuilderSwitch createFormBuilderSwitch() {
   );
 }
 
-FormBuilderChoiceChip createFormBuilderChoiceChip(
+FormBuilderChoiceChip createFormBuilderChoiceChipMap(
     Map<String, String> mapOptions) {
   return FormBuilderChoiceChip<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
-    decoration: const InputDecoration(
-        labelText: 'ChoiceChip:'),
+    decoration: const InputDecoration(labelText: 'ChoiceChip:'),
     name: 'choice_chip',
     options: mapOptions.entries
         .map((entry) => FormBuilderChipOption(
@@ -185,7 +193,33 @@ FormBuilderChoiceChip createFormBuilderChoiceChip(
   );
 }
 
-FormBuilderFilterChip createFormBuilderFilterChip(
+FormBuilderChoiceChip createFormBuilderChoiceChip() {
+  return FormBuilderChoiceChip<String>(
+    autovalidateMode: AutovalidateMode.onUserInteraction,
+    decoration: const InputDecoration(labelText: 'ChoiceChip:'),
+    name: 'choice_chip',
+    options: const [
+      FormBuilderChipOption(
+        value: 'Map 5',
+        avatar: CircleAvatar(child: Text('5')),
+      ),
+      FormBuilderChipOption(
+        value: 'Map 6',
+        avatar: CircleAvatar(child: Text('6')),
+      ),
+      FormBuilderChipOption(
+        value: 'Map 7',
+        avatar: CircleAvatar(child: Text('7')),
+      ),
+      FormBuilderChipOption(
+        value: 'Map 8',
+        avatar: CircleAvatar(child: Text('8')),
+      ),
+    ],
+  );
+}
+
+FormBuilderFilterChip createFormBuilderFilterChipMap(
     Map<String, String> mapOptions) {
   return FormBuilderFilterChip<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -201,7 +235,34 @@ FormBuilderFilterChip createFormBuilderFilterChip(
   );
 }
 
-FormBuilderCheckboxGroup createFormBuilderCheckboxGroup(
+FormBuilderFilterChip createFormBuilderFilterChip() {
+  return FormBuilderFilterChip<String>(
+    autovalidateMode: AutovalidateMode.onUserInteraction,
+    decoration: const InputDecoration(labelText: 'FilterChip'),
+    name: 'filter_chip',
+    selectedColor: Colors.red,
+    options: const [
+      FormBuilderChipOption(
+        value: 'Map 5',
+        avatar: CircleAvatar(child: Text('5')),
+      ),
+      FormBuilderChipOption(
+        value: 'Map 6',
+        avatar: CircleAvatar(child: Text('6')),
+      ),
+      FormBuilderChipOption(
+        value: 'Map 7',
+        avatar: CircleAvatar(child: Text('7')),
+      ),
+      FormBuilderChipOption(
+        value: 'Map 8',
+        avatar: CircleAvatar(child: Text('8')),
+      ),
+    ],
+  );
+}
+
+FormBuilderCheckboxGroup createFormBuilderCheckboxGroupList(
     List<String> listOptions) {
   return FormBuilderCheckboxGroup<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -221,7 +282,26 @@ FormBuilderCheckboxGroup createFormBuilderCheckboxGroup(
   );
 }
 
-FormBuilderRadioGroup createFormBuilderRadioGroup(
+FormBuilderCheckboxGroup createFormBuilderCheckboxGroup() {
+  return FormBuilderCheckboxGroup<String>(
+    autovalidateMode: AutovalidateMode.onUserInteraction,
+    decoration: const InputDecoration(labelText: 'CheckboxGroup'),
+    name: 'checkbox_group',
+    options: const [
+      FormBuilderFieldOption(value: 'List 5'),
+      FormBuilderFieldOption(value: 'List 6'),
+      FormBuilderFieldOption(value: 'List 7'),
+      FormBuilderFieldOption(value: 'List 8'),
+    ],
+    separator: const VerticalDivider(
+      width: 10,
+      thickness: 5,
+      color: Colors.red,
+    ),
+  );
+}
+
+FormBuilderRadioGroup createFormBuilderRadioGroupList(
     List<String> listOptions) {
   return FormBuilderRadioGroup<String>(
     decoration: const InputDecoration(
@@ -238,8 +318,23 @@ FormBuilderRadioGroup createFormBuilderRadioGroup(
   );
 }
 
-FormBuilderDropdown createFormBuilderDropdown(
-    List<String> listOptions) {
+FormBuilderRadioGroup createFormBuilderRadioGroup() {
+  return FormBuilderRadioGroup<String>(
+    decoration: const InputDecoration(
+      labelText: 'RadioGroup',
+    ),
+    name: 'radio_group',
+    options: const [
+      FormBuilderFieldOption(value: 'List 5'),
+      FormBuilderFieldOption(value: 'List 6'),
+      FormBuilderFieldOption(value: 'List 7'),
+      FormBuilderFieldOption(value: 'List 8'),
+    ],
+    controlAffinity: ControlAffinity.leading,
+  );
+}
+
+FormBuilderDropdown createFormBuilderDropdownList(List<String> listOptions) {
   return FormBuilderDropdown<String>(
     name: 'dropdown',
     decoration: const InputDecoration(
@@ -254,5 +349,33 @@ FormBuilderDropdown createFormBuilderDropdown(
             ))
         .toList(),
     //valueTransformer: (val) => val?.toString(),
+  );
+}
+
+FormBuilderDropdown createFormBuilderDropdown() {
+  return FormBuilderDropdown<String>(
+    name: 'dropdown',
+    decoration: const InputDecoration(
+      labelText: 'Dropdown',
+      hintText: 'Select Dropdown',
+    ),
+    items: const [
+      DropdownMenuItem(
+        value: 'list5',
+        child: Text('List 5'),
+      ),
+      DropdownMenuItem(
+        value: 'list6',
+        child: Text('List 6'),
+      ),
+      DropdownMenuItem(
+        value: 'list7',
+        child: Text('List 7'),
+      ),
+      DropdownMenuItem(
+        value: 'list8',
+        child: Text('List 8'),
+      ),
+    ],
   );
 }
