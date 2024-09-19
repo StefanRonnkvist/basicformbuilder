@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:intl/intl.dart';
 
 class CompleteForm extends StatefulWidget {
   const CompleteForm({super.key});
@@ -84,11 +83,7 @@ FormBuilderDateRangePicker createFormBuilderDateRangePicker() {
     name: 'date_range',
     firstDate: DateTime(1970),
     lastDate: DateTime(2030),
-    format: DateFormat('yyyy-MM-dd'),
     decoration: InputDecoration(
-      labelText: 'Date Range',
-      helperText: 'Helper text',
-      hintText: 'Hint text',
       suffixIcon: IconButton(
         icon: const Icon(Icons.close),
         onPressed: () {},
@@ -100,10 +95,7 @@ FormBuilderDateRangePicker createFormBuilderDateRangePicker() {
 FormBuilderDateTimePicker createFormBuilderDateTimePicker() {
   return FormBuilderDateTimePicker(
     name: 'date',
-    initialEntryMode: DatePickerEntryMode.calendar,
-    inputType: InputType.both,
     decoration: InputDecoration(
-      labelText: 'DateTimePicker',
       suffixIcon: IconButton(
         icon: const Icon(Icons.close),
         onPressed: () {},
@@ -118,9 +110,6 @@ FormBuilderSlider createFormBuilderSlider() {
     min: 0.0,
     max: 10.0,
     initialValue: 0.0,
-    divisions: 20,
-    activeColor: Colors.red,
-    inactiveColor: Colors.pink[100],
     decoration: const InputDecoration(
       labelText: 'Slider',
     ),
@@ -132,13 +121,10 @@ FormBuilderRangeSlider createFormBuilderRangeSlider() {
     name: 'range_slider',
     min: 0.0,
     max: 100.0,
-    divisions: 20,
     maxValueWidget: (max) => TextButton(
       onPressed: () {},
       child: Text(max),
     ),
-    activeColor: Colors.red,
-    inactiveColor: Colors.pink[100],
     decoration: const InputDecoration(labelText: 'RangeSlider'),
   );
 }
@@ -161,13 +147,10 @@ FormBuilderCheckbox createFormBuilderCheckBox() {
 
 FormBuilderTextField createFormBuilderTextField() {
   return FormBuilderTextField(
-    autovalidateMode: AutovalidateMode.always,
     name: 'text_field',
     decoration: const InputDecoration(
       labelText: 'TextField',
     ),
-    keyboardType: TextInputType.number,
-    textInputAction: TextInputAction.next,
   );
 }
 
