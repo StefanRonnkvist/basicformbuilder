@@ -297,7 +297,6 @@ FormBuilderRadioGroup createFormBuilderRadioGroupList(
               child: Text(lo),
             ))
         .toList(growable: false),
-    controlAffinity: ControlAffinity.leading,
   );
 }
 
@@ -313,7 +312,6 @@ FormBuilderRadioGroup createFormBuilderRadioGroup() {
       FormBuilderFieldOption(value: 'List 7'),
       FormBuilderFieldOption(value: 'List 8'),
     ],
-    controlAffinity: ControlAffinity.leading,
   );
 }
 
@@ -331,7 +329,6 @@ FormBuilderDropdown createFormBuilderDropdownList(List<String> listOptions) {
               child: Text(lo),
             ))
         .toList(),
-    //valueTransformer: (val) => val?.toString(),
   );
 }
 
