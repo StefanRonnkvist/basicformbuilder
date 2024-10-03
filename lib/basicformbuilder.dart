@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'formbuilderfields.dart';
+import 'listandmap.dart';
 
 class CompleteForm extends StatefulWidget {
   const CompleteForm({super.key});
@@ -10,65 +12,128 @@ class CompleteForm extends StatefulWidget {
   }
 }
 
+void _onChanged(dynamic val) => debugPrint(val.toString());
+
 class _CompleteFormState extends State<CompleteForm> {
-  List<String> listOptions = [
-    'list 1',
-    'list 2',
-    'list 3',
-    'list 4',
-  ];
-
-  Map<String, String> mapOptions = {
-    'Map 1': '1',
-    'Map 2': '2',
-    'Map 3': '3',
-    'Map 4': '4',
-  };
-
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormBuilderState>();
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
           FormBuilder(
             skipDisabled: false,
+            key: _formKey,
+            onChanged: () {
+              _formKey.currentState!.save();
+              debugPrint(_formKey.currentState!.value.toString());
+            },
             child: Column(
               children: <Widget>[
                 const SizedBox(height: 8),
-                createFormBuilderSlider(),
+                createFormBuilderSlider("sliderName", "sliderLabel", 0.0, 10.0,
+                    5.1, _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderRangeSlider(),
+                createFormBuilderRangeSlider(
+                    "sliderRangeName",
+                    "rangeSliderLabel",
+                    0.0,
+                    100.0,
+                    23.7,
+                    67.9,
+                    _onChanged,
+                    _formKey),
                 const SizedBox(height: 8),
-                createFormBuilderDateTimePicker(),
+                createFormBuilderDateTimePicker("dateTimePickerName",
+                    "dateTimePickerLabelText", _onChanged, _formKey),
                 const SizedBox(height: 8),
-                createFormBuilderDateRangePicker(),
+                createFormBuilderDateRangePicker(
+                    "dateTimeRangePickerName",
+                    1970,
+                    2030,
+                    "dateTimeRangePickerLabelText",
+                    _onChanged,
+                    _formKey),
                 const SizedBox(height: 8),
-                createFormBuilderCheckBox(),
+                createFormBuilderCheckBox(
+                    "checkBoxName", "checkBoxText", _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderSwitch(),
+                createFormBuilderSwitch("switchName", "switchLabelText", _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderTextField(),
+                createFormBuilderTextField("textFieldName",
+                    "textFieldLabelText", _formKey, setState),
                 const SizedBox(height: 8),
-                createFormBuilderFilterChipMap(mapOptions),
+                createFormBuilderFilterChipMap(
+                    mapOptions,
+                    "filterChipLabelTextMap",
+                    "filterChipNameMap",
+                    _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderFilterChip(),
+                createFormBuilderFilterChip("filterChipLabelText",
+                    "filterChipName", _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderChoiceChipMap(mapOptions),
+                createFormBuilderChoiceChipMap(mapOptions, "choiceChipNameMap",
+                    "choiceChipLabelTextMap", _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderChoiceChip(),
+                createFormBuilderChoiceChip("choiceChipName",
+                    "choiceChipLabelText", _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderCheckboxGroupList(listOptions),
+                createFormBuilderCheckboxGroupList(
+                    listOptions,
+                    "checkBoxGroupLabelTextList",
+                    "checkBoxGroupNameList",
+                    _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderCheckboxGroup(),
+                createFormBuilderCheckboxGroup("checkBoxGroupLabelText",
+                    "checkBoxGroupName", _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderRadioGroupList(listOptions),
+                createFormBuilderRadioGroupList(
+                    listOptions,
+                    "radioGroupNameList",
+                    "radioGroupLabelTextList",
+                    _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderRadioGroup(),
+                createFormBuilderRadioGroup("radioGroupName",
+                    "radioGroupLabelText", _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderDropdownList(listOptions),
+                createFormBuilderDropdownList(
+                    listOptions,
+                    "dropDownLabelTextList",
+                    "dropDownNameList",
+                    _onChanged),
                 const SizedBox(height: 8),
-                createFormBuilderDropdown(),
-                const SizedBox(height: 8),
+                createFormBuilderDropdown(
+                    "dropDownLabelText", "dropDownName", _onChanged),
+                const SizedBox(height: 30),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState?.saveAndValidate() ??
+                                false) {
+                              debugPrint(
+                                  _formKey.currentState?.value.toString());
+                            } else {
+                              debugPrint(
+                                  _formKey.currentState?.value.toString());
+                              debugPrint('validation failed');
+                            }
+                          },
+                          child: const Text('Submit')),
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () {
+                          _formKey.currentState?.reset();
+                        },
+                        child: const Text('Reset'),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
               ],
             ),
           ),
@@ -76,290 +141,4 @@ class _CompleteFormState extends State<CompleteForm> {
       ),
     );
   }
-}
-
-FormBuilderDateRangePicker createFormBuilderDateRangePicker() {
-  return FormBuilderDateRangePicker(
-    name: 'date_range',
-    firstDate: DateTime(1970),
-    lastDate: DateTime(2030),
-    decoration: InputDecoration(
-      suffixIcon: IconButton(
-        icon: const Icon(Icons.close),
-        onPressed: () {},
-      ),
-    ),
-  );
-}
-
-FormBuilderDateTimePicker createFormBuilderDateTimePicker() {
-  return FormBuilderDateTimePicker(
-    name: 'date',
-    decoration: InputDecoration(
-      suffixIcon: IconButton(
-        icon: const Icon(Icons.close),
-        onPressed: () {},
-      ),
-    ),
-  );
-}
-
-FormBuilderSlider createFormBuilderSlider() {
-  return FormBuilderSlider(
-    name: 'slider',
-    min: 0.0,
-    max: 10.0,
-    initialValue: 0.0,
-    decoration: const InputDecoration(
-      labelText: 'Slider',
-    ),
-  );
-}
-
-FormBuilderRangeSlider createFormBuilderRangeSlider() {
-  return FormBuilderRangeSlider(
-    name: 'range_slider',
-    min: 0.0,
-    max: 100.0,
-    maxValueWidget: (max) => TextButton(
-      onPressed: () {},
-      child: Text(max),
-    ),
-    decoration: const InputDecoration(labelText: 'RangeSlider'),
-  );
-}
-
-FormBuilderCheckbox createFormBuilderCheckBox() {
-  return FormBuilderCheckbox(
-    name: 'CheckBox',
-    title: RichText(
-      text: const TextSpan(
-        children: [
-          TextSpan(
-            text: 'CheckBox',
-            style: TextStyle(color: Colors.black),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-FormBuilderTextField createFormBuilderTextField() {
-  return FormBuilderTextField(
-    name: 'text_field',
-    decoration: const InputDecoration(
-      labelText: 'TextField',
-    ),
-  );
-}
-
-FormBuilderSwitch createFormBuilderSwitch() {
-  return FormBuilderSwitch(
-    title: const Text('Switch'),
-    name: 'switch',
-  );
-}
-
-FormBuilderChoiceChip createFormBuilderChoiceChipMap(
-    Map<String, String> mapOptions) {
-  return FormBuilderChoiceChip<String>(
-    autovalidateMode: AutovalidateMode.onUserInteraction,
-    decoration: const InputDecoration(labelText: 'ChoiceChip Map:'),
-    name: 'choice_chip_map',
-    options: mapOptions.entries
-        .map((entry) => FormBuilderChipOption(
-              value: entry.key,
-              avatar: CircleAvatar(child: Text(entry.value)),
-            ))
-        .toList(growable: false),
-  );
-}
-
-FormBuilderChoiceChip createFormBuilderChoiceChip() {
-  return FormBuilderChoiceChip<String>(
-    autovalidateMode: AutovalidateMode.onUserInteraction,
-    decoration: const InputDecoration(labelText: 'ChoiceChip:'),
-    name: 'choice_chip',
-    options: const [
-      FormBuilderChipOption(
-        value: 'Map 5',
-        avatar: CircleAvatar(child: Text('5')),
-      ),
-      FormBuilderChipOption(
-        value: 'Map 6',
-        avatar: CircleAvatar(child: Text('6')),
-      ),
-      FormBuilderChipOption(
-        value: 'Map 7',
-        avatar: CircleAvatar(child: Text('7')),
-      ),
-      FormBuilderChipOption(
-        value: 'Map 8',
-        avatar: CircleAvatar(child: Text('8')),
-      ),
-    ],
-  );
-}
-
-FormBuilderFilterChip createFormBuilderFilterChipMap(
-    Map<String, String> mapOptions) {
-  return FormBuilderFilterChip<String>(
-    autovalidateMode: AutovalidateMode.onUserInteraction,
-    decoration: const InputDecoration(labelText: 'FilterChip Map'),
-    name: 'filter_chip_map',
-    selectedColor: Colors.red,
-    options: mapOptions.entries
-        .map((entry) => FormBuilderChipOption(
-              value: entry.key,
-              avatar: CircleAvatar(child: Text(entry.value)),
-            ))
-        .toList(growable: false),
-  );
-}
-
-FormBuilderFilterChip createFormBuilderFilterChip() {
-  return FormBuilderFilterChip<String>(
-    autovalidateMode: AutovalidateMode.onUserInteraction,
-    decoration: const InputDecoration(labelText: 'FilterChip'),
-    name: 'filter_chip',
-    selectedColor: Colors.red,
-    options: const [
-      FormBuilderChipOption(
-        value: 'Map 5',
-        avatar: CircleAvatar(child: Text('5')),
-      ),
-      FormBuilderChipOption(
-        value: 'Map 6',
-        avatar: CircleAvatar(child: Text('6')),
-      ),
-      FormBuilderChipOption(
-        value: 'Map 7',
-        avatar: CircleAvatar(child: Text('7')),
-      ),
-      FormBuilderChipOption(
-        value: 'Map 8',
-        avatar: CircleAvatar(child: Text('8')),
-      ),
-    ],
-  );
-}
-
-FormBuilderCheckboxGroup createFormBuilderCheckboxGroupList(
-    List<String> listOptions) {
-  return FormBuilderCheckboxGroup<String>(
-    autovalidateMode: AutovalidateMode.onUserInteraction,
-    decoration: const InputDecoration(labelText: 'CheckboxGroup List'),
-    name: 'checkbox_group_list',
-    options: listOptions
-        .map((lo) => FormBuilderFieldOption(
-              value: lo,
-              child: Text(lo),
-            ))
-        .toList(growable: false),
-    separator: const VerticalDivider(
-      width: 10,
-      thickness: 5,
-      color: Colors.red,
-    ),
-  );
-}
-
-FormBuilderCheckboxGroup createFormBuilderCheckboxGroup() {
-  return FormBuilderCheckboxGroup<String>(
-    autovalidateMode: AutovalidateMode.onUserInteraction,
-    decoration: const InputDecoration(labelText: 'CheckboxGroup'),
-    name: 'checkbox_group',
-    options: const [
-      FormBuilderFieldOption(value: 'List 5'),
-      FormBuilderFieldOption(value: 'List 6'),
-      FormBuilderFieldOption(value: 'List 7'),
-      FormBuilderFieldOption(value: 'List 8'),
-    ],
-    separator: const VerticalDivider(
-      width: 10,
-      thickness: 5,
-      color: Colors.red,
-    ),
-  );
-}
-
-FormBuilderRadioGroup createFormBuilderRadioGroupList(
-    List<String> listOptions) {
-  return FormBuilderRadioGroup<String>(
-    decoration: const InputDecoration(
-      labelText: 'RadioGroup List',
-    ),
-    name: 'radio_group_list',
-    options: listOptions
-        .map((lo) => FormBuilderFieldOption(
-              value: lo,
-              child: Text(lo),
-            ))
-        .toList(growable: false),
-  );
-}
-
-FormBuilderRadioGroup createFormBuilderRadioGroup() {
-  return FormBuilderRadioGroup<String>(
-    decoration: const InputDecoration(
-      labelText: 'RadioGroup',
-    ),
-    name: 'radio_group',
-    options: const [
-      FormBuilderFieldOption(value: 'List 5'),
-      FormBuilderFieldOption(value: 'List 6'),
-      FormBuilderFieldOption(value: 'List 7'),
-      FormBuilderFieldOption(value: 'List 8'),
-    ],
-  );
-}
-
-FormBuilderDropdown createFormBuilderDropdownList(List<String> listOptions) {
-  return FormBuilderDropdown<String>(
-    name: 'dropdown_list',
-    decoration: const InputDecoration(
-      labelText: 'Dropdown List',
-      hintText: 'Select Dropdown',
-    ),
-    items: listOptions
-        .map((lo) => DropdownMenuItem(
-              alignment: AlignmentDirectional.center,
-              value: lo,
-              child: Text(lo),
-            ))
-        .toList(),
-  );
-}
-
-FormBuilderDropdown createFormBuilderDropdown() {
-  return FormBuilderDropdown<String>(
-    name: 'dropdown',
-    decoration: const InputDecoration(
-      labelText: 'Dropdown',
-      hintText: 'Select Dropdown',
-    ),
-    items: const [
-      DropdownMenuItem(
-        alignment: AlignmentDirectional.center,
-        value: 'list5',
-        child: Text('List 5'),
-      ),
-      DropdownMenuItem(
-        alignment: AlignmentDirectional.center,
-        value: 'list6',
-        child: Text('List 6'),
-      ),
-      DropdownMenuItem(
-        alignment: AlignmentDirectional.center,
-        value: 'list7',
-        child: Text('List 7'),
-      ),
-      DropdownMenuItem(
-        alignment: AlignmentDirectional.center,
-        value: 'list8',
-        child: Text('List 8'),
-      ),
-    ],
-  );
 }

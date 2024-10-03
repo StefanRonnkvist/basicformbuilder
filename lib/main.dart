@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'basicformbuilder.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const BasicMain());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class BasicMain extends StatelessWidget {
+  const BasicMain({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
