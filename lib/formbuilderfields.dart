@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 FormBuilderDateRangePicker createFormBuilderDateRangePicker(
     String dateTimeRangePickerName,
@@ -371,3 +372,17 @@ FormBuilderDropdown createFormBuilderDropdown(
     ],
   );
 }
+/*
+Bool validators
+Collection validators
+Core validators
+Datetime validators
+File validators
+Finance validators
+Identity validators
+Network validators
+Numeric validators
+String validators
+Use-case validators
+Extension method validators
+ */
