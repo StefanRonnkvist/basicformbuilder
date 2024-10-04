@@ -4,7 +4,7 @@ A Flutter FormBuilder project.
 
 ## Getting Started
 
-*The following FormBuilder Fields:
+The following FormBuilder Fields:
 **FormBuilderDateRangePicker
 **FormBuilderDateTimePicker
 **FormBuilderSlider
@@ -19,7 +19,7 @@ A Flutter FormBuilder project.
 **FormBuilderRadioGroup
 **FormBuilderDropdown
 
-*The following FormBuilder Input Validators:
+The following FormBuilder Input Validators:
 **Bool
 **Collection
 **Core
