@@ -2,22 +2,22 @@
 
 A Flutter FormBuilder project.
 
-## The following FormBuilder Fields:  
+### The following FormBuilder Fields:  
 * FormBuilderDateRangePicker  
 * FormBuilderDateTimePicker  
 * FormBuilderSlider  
 * FormBuilderRangeSlider  
 * FormBuilderCheckbox  
 * FormBuilderTextField  
-* FormBuilderSwitch  
-The following input fields utilize Discrete, Map and List variables:  
+* FormBuilderSwitch
+#### The following input fields utilize Discrete, Map and List variables:  
 * FormBuilderChoiceChip  
 * FormBuilderFilterChip  
 * FormBuilderCheckboxGroup  
 * FormBuilderRadioGroup  
 * FormBuilderDropdown  
 
-## The following FormBuilder Input Validators:  
+### The following FormBuilder Input Validators:  
 * Bool  
 * Collection  
 * Core  
