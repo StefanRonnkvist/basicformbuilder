@@ -1,7 +1,7 @@
 # Basic Form Builder
 
 A Flutter FormBuilder project.
-```git
+
 ## The following FormBuilder Fields:  
 * FormBuilderDateRangePicker  
 * FormBuilderDateTimePicker  
@@ -30,4 +30,3 @@ A Flutter FormBuilder project.
 * String  
 * Use-case  
 * Extension  
-```
