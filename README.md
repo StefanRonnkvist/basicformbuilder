@@ -10,7 +10,7 @@ A Flutter FormBuilder project.
 * FormBuilderCheckbox  
 * FormBuilderTextField  
 * FormBuilderSwitch  
-* The following input fields utilize Discrete, Map and List variables:  
+The following input fields utilize Discrete, Map and List variables:  
 * FormBuilderChoiceChip  
 * FormBuilderFilterChip  
 * FormBuilderCheckboxGroup  
