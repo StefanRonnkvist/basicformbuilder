@@ -12,111 +12,85 @@ class CompleteForm extends StatefulWidget {
   }
 }
 
-void _onChanged(dynamic val) => debugPrint(val.toString());
-
 class _CompleteFormState extends State<CompleteForm> {
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormBuilderState>();
+    final formKey = GlobalKey<FormBuilderState>();
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
           FormBuilder(
             skipDisabled: false,
-            key: _formKey,
+            key: formKey,
+            /*
             onChanged: () {
               _formKey.currentState!.save();
               debugPrint(_formKey.currentState!.value.toString());
             },
+             */
             child: Column(
               children: <Widget>[
                 const SizedBox(height: 8),
-                createFormBuilderSlider("sliderName", "sliderLabel", 0.0, 10.0,
-                    5.1, _onChanged),
+                createFormBuilderSlider(
+                    "sliderName", "sliderLabel", 0.0, 10.0, 5.1),
                 const SizedBox(height: 8),
-                createFormBuilderRangeSlider(
-                    "sliderRangeName",
-                    "rangeSliderLabel",
-                    0.0,
-                    100.0,
-                    23.7,
-                    67.9,
-                    _onChanged,
-                    _formKey),
+                createFormBuilderRangeSlider("sliderRangeName",
+                    "rangeSliderLabel", 0.0, 100.0, 23.7, 67.9, formKey),
                 const SizedBox(height: 8),
-                createFormBuilderDateTimePicker("dateTimePickerName",
-                    "dateTimePickerLabelText", _onChanged, _formKey),
+                createFormBuilderDateTimePicker(
+                    "dateTimePickerName", "dateTimePickerLabelText", formKey),
                 const SizedBox(height: 8),
-                createFormBuilderDateRangePicker(
-                    "dateTimeRangePickerName",
-                    1970,
-                    2030,
-                    "dateTimeRangePickerLabelText",
-                    _onChanged,
-                    _formKey),
+                createFormBuilderDateRangePicker("dateTimeRangePickerName",
+                    1970, 2030, "dateTimeRangePickerLabelText", formKey),
                 const SizedBox(height: 8),
-                createFormBuilderCheckBox(
-                    "checkBoxName", "checkBoxText", _onChanged),
+                createFormBuilderCheckBox("checkBoxName", "checkBoxText"),
                 const SizedBox(height: 8),
-                createFormBuilderSwitch("switchName", "switchLabelText", _onChanged),
+                createFormBuilderSwitch("switchName", "switchLabelText"),
                 const SizedBox(height: 8),
-                createFormBuilderTextField("textFieldName",
-                    "textFieldLabelText", _formKey, setState),
+                createFormBuilderTextField(
+                    "textFieldName", "textFieldLabelText", formKey, setState),
                 const SizedBox(height: 8),
                 createFormBuilderFilterChipMap(
-                    mapOptions,
-                    "filterChipLabelTextMap",
-                    "filterChipNameMap",
-                    _onChanged),
+                    mapOptions, "filterChipLabelTextMap", "filterChipNameMap"),
                 const SizedBox(height: 8),
-                createFormBuilderFilterChip("filterChipLabelText",
-                    "filterChipName", _onChanged),
+                createFormBuilderFilterChip(
+                    "filterChipLabelText", "filterChipName"),
                 const SizedBox(height: 8),
-                createFormBuilderChoiceChipMap(mapOptions, "choiceChipNameMap",
-                    "choiceChipLabelTextMap", _onChanged),
+                createFormBuilderChoiceChipMap(
+                    mapOptions, "choiceChipNameMap", "choiceChipLabelTextMap"),
                 const SizedBox(height: 8),
-                createFormBuilderChoiceChip("choiceChipName",
-                    "choiceChipLabelText", _onChanged),
+                createFormBuilderChoiceChip(
+                    "choiceChipName", "choiceChipLabelText"),
                 const SizedBox(height: 8),
-                createFormBuilderCheckboxGroupList(
-                    listOptions,
-                    "checkBoxGroupLabelTextList",
-                    "checkBoxGroupNameList",
-                    _onChanged),
+                createFormBuilderCheckboxGroupList(listOptions,
+                    "checkBoxGroupLabelTextList", "checkBoxGroupNameList"),
                 const SizedBox(height: 8),
-                createFormBuilderCheckboxGroup("checkBoxGroupLabelText",
-                    "checkBoxGroupName", _onChanged),
+                createFormBuilderCheckboxGroup(
+                    "checkBoxGroupLabelText", "checkBoxGroupName"),
                 const SizedBox(height: 8),
-                createFormBuilderRadioGroupList(
-                    listOptions,
-                    "radioGroupNameList",
-                    "radioGroupLabelTextList",
-                    _onChanged),
+                createFormBuilderRadioGroupList(listOptions,
+                    "radioGroupNameList", "radioGroupLabelTextList"),
                 const SizedBox(height: 8),
-                createFormBuilderRadioGroup("radioGroupName",
-                    "radioGroupLabelText", _onChanged),
+                createFormBuilderRadioGroup(
+                    "radioGroupName", "radioGroupLabelText"),
                 const SizedBox(height: 8),
                 createFormBuilderDropdownList(
-                    listOptions,
-                    "dropDownLabelTextList",
-                    "dropDownNameList",
-                    _onChanged),
+                    listOptions, "dropDownLabelTextList", "dropDownNameList"),
                 const SizedBox(height: 8),
-                createFormBuilderDropdown(
-                    "dropDownLabelText", "dropDownName", _onChanged),
+                createFormBuilderDropdown("dropDownLabelText", "dropDownName"),
                 const SizedBox(height: 30),
                 Row(
                   children: <Widget>[
                     Expanded(
                       child: ElevatedButton(
                           onPressed: () {
-                            if (_formKey.currentState?.saveAndValidate() ??
+                            if (formKey.currentState?.saveAndValidate() ??
                                 false) {
                               debugPrint(
-                                  _formKey.currentState?.value.toString());
+                                  formKey.currentState?.value.toString());
                             } else {
                               debugPrint(
-                                  _formKey.currentState?.value.toString());
+                                  formKey.currentState?.value.toString());
                               debugPrint('validation failed');
                             }
                           },
@@ -126,7 +100,7 @@ class _CompleteFormState extends State<CompleteForm> {
                     Expanded(
                       child: OutlinedButton(
                         onPressed: () {
-                          _formKey.currentState?.reset();
+                          formKey.currentState?.reset();
                         },
                         child: const Text('Reset'),
                       ),

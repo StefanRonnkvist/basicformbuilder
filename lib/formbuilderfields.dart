@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-//import 'package:form_builder_validators/form_builder_validators.dart';
 
 FormBuilderDateRangePicker createFormBuilderDateRangePicker(
     String dateTimeRangePickerName,
     int dateTimeFirst,
     int dateTimeLast,
     String dateTimeRangePickerLabelText,
-    onChanged,
     _formKey) {
   return FormBuilderDateRangePicker(
     name: dateTimeRangePickerName,
     firstDate: DateTime(dateTimeFirst),
     lastDate: DateTime(dateTimeLast),
-    onChanged: onChanged,
+    validator: null,
     decoration: InputDecoration(
       labelText: dateTimeRangePickerLabelText,
       suffixIcon: IconButton(
@@ -30,11 +28,10 @@ FormBuilderDateRangePicker createFormBuilderDateRangePicker(
 FormBuilderDateTimePicker createFormBuilderDateTimePicker(
     String dateTimePickerName,
     String dateTimePickerLabelText,
-    onChanged,
     _formKey) {
   return FormBuilderDateTimePicker(
     name: dateTimePickerName,
-    onChanged: onChanged,
+    validator: null,
     decoration: InputDecoration(
       labelText: dateTimePickerLabelText,
       suffixIcon: IconButton(
@@ -52,14 +49,13 @@ FormBuilderSlider createFormBuilderSlider(
     String sliderLabelText,
     double sliderMin,
     double sliderMax,
-    double sliderInitial,
-    onChanged) {
+    double sliderInitial) {
   return FormBuilderSlider(
     name: sliderName,
     min: sliderMin,
     max: sliderMax,
     initialValue: sliderInitial,
-    onChanged: onChanged,
+    validator: null,
     decoration: InputDecoration(
       labelText: sliderLabelText,
     ),
@@ -73,14 +69,13 @@ FormBuilderRangeSlider createFormBuilderRangeSlider(
     double sliderMax,
     double sliderInitialMin,
     double sliderInitialMax,
-    onChanged,
     _formKey) {
   return FormBuilderRangeSlider(
     name: sliderName,
     min: sliderMin,
     max: sliderMax,
     initialValue: RangeValues(sliderInitialMin, sliderInitialMax),
-    onChanged: onChanged,
+    validator: null,
     maxValueWidget: (max) => TextButton(
       onPressed: () {
         _formKey.currentState?.patchValue(
@@ -94,16 +89,16 @@ FormBuilderRangeSlider createFormBuilderRangeSlider(
 }
 
 FormBuilderCheckbox createFormBuilderCheckBox(
-    String checkBoxName, String checkBoxText, onChanged) {
+    String checkBoxName, String checkBoxText) {
   return FormBuilderCheckbox(
     name: checkBoxName,
-    onChanged: onChanged,
+    validator: null,
     title: RichText(
       text: TextSpan(
         children: [
           TextSpan(
             text: checkBoxText,
-            style: const TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.white),
           ),
         ],
       ),
@@ -111,41 +106,36 @@ FormBuilderCheckbox createFormBuilderCheckBox(
   );
 }
 
-FormBuilderTextField createFormBuilderTextField(String textFieldName,
-    String textFieldLabelText, _formKey, _setState) {
+FormBuilderTextField createFormBuilderTextField(
+    String textFieldName, String textFieldLabelText, _formKey, _setState) {
   return FormBuilderTextField(
     name: textFieldName,
+    validator: null,
     decoration: InputDecoration(
       labelText: textFieldLabelText,
       suffixIcon: const Icon(Icons.check, color: Colors.green),
     ),
-    onChanged: (val) {
-      _setState(() {
-        _formKey.currentState!.fields[textFieldName]?.didChange(null);
-      });
-    },
   );
 }
 
 FormBuilderSwitch createFormBuilderSwitch(
-    String switchName, String switchTitle, onChanged) {
+    String switchName, String switchTitle) {
   return FormBuilderSwitch(
     title: Text(switchTitle),
     name: switchName,
-    onChanged: onChanged,
+    validator: null,
   );
 }
 
 FormBuilderChoiceChip createFormBuilderChoiceChipMap(
     Map<String, String> mapOptions,
     String choiceChipNameMap,
-    String choiceChipLabelTextMap,
-    onChanged) {
+    String choiceChipLabelTextMap) {
   return FormBuilderChoiceChip<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
     decoration: InputDecoration(labelText: '$choiceChipLabelTextMap:'),
     name: choiceChipNameMap,
-    onChanged: onChanged,
+    validator: null,
     options: mapOptions.entries
         .map((entry) => FormBuilderChipOption(
               value: entry.key,
@@ -155,13 +145,13 @@ FormBuilderChoiceChip createFormBuilderChoiceChipMap(
   );
 }
 
-FormBuilderChoiceChip createFormBuilderChoiceChip(String choiceChipName,
-    String choiceChipLabelText, onChanged) {
+FormBuilderChoiceChip createFormBuilderChoiceChip(
+    String choiceChipName, String choiceChipLabelText) {
   return FormBuilderChoiceChip<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
     decoration: InputDecoration(labelText: choiceChipLabelText),
     name: choiceChipName,
-    onChanged: onChanged,
+    validator: null,
     options: const [
       FormBuilderChipOption(
         value: 'Item 5',
@@ -186,14 +176,13 @@ FormBuilderChoiceChip createFormBuilderChoiceChip(String choiceChipName,
 FormBuilderFilterChip createFormBuilderFilterChipMap(
     Map<String, String> mapOptions,
     String filterChipLabelTextMap,
-    String filterChipNameMap,
-    onChanged) {
+    String filterChipNameMap) {
   return FormBuilderFilterChip<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
     decoration: InputDecoration(labelText: filterChipLabelTextMap),
     name: filterChipNameMap,
     selectedColor: Colors.red,
-    onChanged: onChanged,
+    validator: null,
     options: mapOptions.entries
         .map((entry) => FormBuilderChipOption(
               value: entry.key,
@@ -203,14 +192,14 @@ FormBuilderFilterChip createFormBuilderFilterChipMap(
   );
 }
 
-FormBuilderFilterChip createFormBuilderFilterChip(String filterChipLabelText,
-    String filterChipName, onChanged) {
+FormBuilderFilterChip createFormBuilderFilterChip(
+    String filterChipLabelText, String filterChipName) {
   return FormBuilderFilterChip<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
     decoration: InputDecoration(labelText: filterChipLabelText),
     name: filterChipName,
     selectedColor: Colors.red,
-    onChanged: onChanged,
+    validator: null,
     options: const [
       FormBuilderChipOption(
         value: 'Item 5',
@@ -235,13 +224,12 @@ FormBuilderFilterChip createFormBuilderFilterChip(String filterChipLabelText,
 FormBuilderCheckboxGroup createFormBuilderCheckboxGroupList(
     List<String> listOptions,
     String checkBoxGroupLabelTextList,
-    String checkBoxGroupNameList,
-    onChanged) {
+    String checkBoxGroupNameList) {
   return FormBuilderCheckboxGroup<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
     decoration: InputDecoration(labelText: checkBoxGroupLabelTextList),
     name: checkBoxGroupNameList,
-    onChanged: onChanged,
+    validator: null,
     options: listOptions
         .map((lo) => FormBuilderFieldOption(
               value: lo,
@@ -257,14 +245,12 @@ FormBuilderCheckboxGroup createFormBuilderCheckboxGroupList(
 }
 
 FormBuilderCheckboxGroup createFormBuilderCheckboxGroup(
-    String checkBoxGroupLabelText,
-    String checkBoxGroupName,
-    onChanged) {
+    String checkBoxGroupLabelText, String checkBoxGroupName) {
   return FormBuilderCheckboxGroup<String>(
     autovalidateMode: AutovalidateMode.onUserInteraction,
     decoration: InputDecoration(labelText: checkBoxGroupLabelText),
     name: checkBoxGroupName,
-    onChanged: onChanged,
+    validator: null,
     options: const [
       FormBuilderFieldOption(value: 'Item 5'),
       FormBuilderFieldOption(value: 'Item 6'),
@@ -279,17 +265,14 @@ FormBuilderCheckboxGroup createFormBuilderCheckboxGroup(
   );
 }
 
-FormBuilderRadioGroup createFormBuilderRadioGroupList(
-    List<String> listOptions,
-    String radioGroupNameList,
-    String radioGroupLabelTextList,
-    onChanged) {
+FormBuilderRadioGroup createFormBuilderRadioGroupList(List<String> listOptions,
+    String radioGroupNameList, String radioGroupLabelTextList) {
   return FormBuilderRadioGroup<String>(
+    validator: null,
     decoration: InputDecoration(
       labelText: radioGroupLabelTextList,
     ),
     name: radioGroupNameList,
-    onChanged: onChanged,
     options: listOptions
         .map((lo) => FormBuilderFieldOption(
               value: lo,
@@ -300,13 +283,13 @@ FormBuilderRadioGroup createFormBuilderRadioGroupList(
 }
 
 FormBuilderRadioGroup createFormBuilderRadioGroup(
-    String radioGroupName, String radioGroupLabelText, onChanged) {
+    String radioGroupName, String radioGroupLabelText) {
   return FormBuilderRadioGroup<String>(
     decoration: InputDecoration(
       labelText: radioGroupLabelText,
     ),
     name: radioGroupName,
-    onChanged: onChanged,
+    validator: null,
     options: const [
       FormBuilderFieldOption(value: 'Item 5'),
       FormBuilderFieldOption(value: 'Item 6'),
@@ -316,19 +299,15 @@ FormBuilderRadioGroup createFormBuilderRadioGroup(
   );
 }
 
-FormBuilderDropdown createFormBuilderDropdownList(
-    List<String> listOptions,
-    String dropDownLabelTextList,
-    String dropDownNameList,
-    onChanged) {
+FormBuilderDropdown createFormBuilderDropdownList(List<String> listOptions,
+    String dropDownLabelTextList, String dropDownNameList) {
   return FormBuilderDropdown<String>(
     name: dropDownNameList,
-    onChanged: onChanged,
+    validator: null,
     decoration: InputDecoration(
       labelText: dropDownLabelTextList,
       hintText: 'Select Dropdown',
     ),
-    /**/
     items: listOptions
         .map((lo) => DropdownMenuItem(
               alignment: AlignmentDirectional.center,
@@ -340,10 +319,10 @@ FormBuilderDropdown createFormBuilderDropdownList(
 }
 
 FormBuilderDropdown createFormBuilderDropdown(
-    String dropDownLabelText, String dropDownName, onChanged) {
+    String dropDownLabelText, String dropDownName) {
   return FormBuilderDropdown<String>(
     name: dropDownName,
-    onChanged: onChanged,
+    validator: null,
     decoration: InputDecoration(
       labelText: dropDownLabelText,
       hintText: 'Select Dropdown',
@@ -372,17 +351,3 @@ FormBuilderDropdown createFormBuilderDropdown(
     ],
   );
 }
-/*
-Bool validators
-Collection validators
-Core validators
-Datetime validators
-File validators
-Finance validators
-Identity validators
-Network validators
-Numeric validators
-String validators
-Use-case validators
-Extension method validators
- */
